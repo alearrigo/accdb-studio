@@ -6,6 +6,7 @@
   <title>ACCDB Studio — Access databases on your Mac</title>
   <meta name="description" content="ACCDB Studio opens, explores, and edits .accdb and .mdb database files natively on macOS, without Windows or Microsoft Access.">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#4048c0">
   <meta property="og:title" content="ACCDB Studio — Access databases on your Mac">
   <meta property="og:description" content="Open, explore, and edit .accdb and .mdb files natively on macOS. No Windows, no Access, no drivers.">
   <meta property="og:image" content="https://alearrigo.github.io/accdb-studio/screenshots/1_datasheet_light.webp">
@@ -13,168 +14,269 @@
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="preload" href="fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="top">
-  <div class="wrap top-row">
-    <a class="brand" href="./"><img src="icon.png" alt="" width="32" height="32"><span>ACCDB Studio</span></a>
-    <nav aria-label="Sections">
+<!-- 1. Apertura: campo indaco, la lente ambra dell'icona a grandezza enorme -->
+<header class="hero" id="top">
+  <div class="lens" aria-hidden="true"></div>
+  <nav class="bar" aria-label="Sections">
+    <a class="brand" href="./"><img src="icon.png" alt="" width="36" height="36"><span>ACCDB Studio</span></a>
+    <div class="bar-links">
       <a href="#features">Features</a>
-      <a href="#files">Supported files</a>
+      <a href="#files" class="wide-only">Files</a>
       <a href="#support">Support</a>
-    </nav>
+    </div>
+  </nav>
+  <div class="hero-text">
+    <h1 class="lines">
+      <span class="line"><span data-line style="--i:0">Access files,</span></span>
+      <span class="line"><span data-line style="--i:1">on your Mac.</span></span>
+    </h1>
+    <p class="hero-lede" data-rise style="--i:2">Open, explore, and edit <b>.accdb</b> and <b>.mdb</b> databases natively on macOS. No Windows, no Microsoft&nbsp;Access, no drivers.</p>
+    <p class="hero-act" data-rise style="--i:3">
+      <a class="button" href="#files">Check a file</a>
+      <span>Coming soon to the Mac App Store.<br>macOS 11 or later, Apple silicon and Intel.</span>
+    </p>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero wrap">
-    <div class="hero-text">
-      <h1>Access databases, opened on your&nbsp;Mac.</h1>
-      <p class="lede">Open, explore, and edit <code>.accdb</code> and <code>.mdb</code> files natively on macOS.
-        No Windows, no Microsoft Access, no drivers.</p>
-      <p class="store"><span class="store-badge">Coming soon to the Mac App Store</span>
-        <span class="req">macOS 11 or later, Apple silicon and Intel</span></p>
+
+  <!-- 2. Cerca nel database: il titolo è un campo di ricerca vero, sui dati di esempio -->
+  <section class="search" aria-labelledby="search-title">
+    <div class="grid">
+      <h2 id="search-title" class="visually-hidden">Search a whole database</h2>
+      <p class="search-intro" data-reveal>Type anything. Search database (⌘⇧F) looks through every table at once. Try it on the sample file from the screenshots.</p>
+      <label class="query" data-ui data-reveal style="--i:1">
+        <span class="visually-hidden">Search the sample database</span>
+        <input id="q" type="search" value="café" spellcheck="false" autocomplete="off" maxlength="40">
+        <span class="caret" aria-hidden="true"></span>
+      </label>
+      <div class="answer" data-ui data-reveal style="--i:2">
+        <p class="answer-head" id="answer-head" aria-live="polite">3 matches in Customers</p>
+        <ol class="hits" id="hits">
+          <li><span class="hit-n">1</span><span class="hit-v">Blue Door <mark>Café</mark></span><span class="hit-f">Company</span></li>
+          <li><span class="hit-n">8</span><span class="hit-v">Paper Crane <mark>Café</mark></span><span class="hit-f">Company</span></li>
+          <li><span class="hit-n">17</span><span class="hit-v">Amber Leaf <mark>Cafe</mark></span><span class="hit-f">Company</span></li>
+        </ol>
+      </div>
+      <p class="examples" data-reveal style="--i:3">
+        <button type="button" data-q="Italy">Italy</button>
+        <button type="button" data-q="Emma">Emma</button>
+        <button type="button" data-q="2024">2024</button>
+      </p>
     </div>
-    <img class="hero-icon" src="icon.png" alt="ACCDB Studio app icon" width="168" height="168">
   </section>
 
-  <section class="showcase" aria-labelledby="tour-title">
-    <div class="wrap">
-      <h2 id="tour-title" class="visually-hidden">A look at the app</h2>
-      <div class="tabs" role="tablist" aria-label="Screenshots">
-        <button role="tab" id="tab-0" aria-controls="slide-0" aria-selected="true">Datasheet</button>
-        <button role="tab" id="tab-1" aria-controls="slide-1" aria-selected="false" tabindex="-1">Filters</button>
-        <button role="tab" id="tab-2" aria-controls="slide-2" aria-selected="false" tabindex="-1">SQL queries</button>
-        <button role="tab" id="tab-3" aria-controls="slide-3" aria-selected="false" tabindex="-1">Table design</button>
-        <button role="tab" id="tab-4" aria-controls="slide-4" aria-selected="false" tabindex="-1">Export</button>
+  <!-- 3. Funzioni: a sinistra lo schermo dell'app fisso, a destra le funzioni che lo cambiano -->
+  <section id="features" class="features" aria-labelledby="features-title">
+    <div class="stage">
+      <div class="shot-frame shutter" id="shots">
+        <picture class="shot is-on" data-shot="0">
+          <source srcset="screenshots/1_datasheet_dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="screenshots/1_datasheet_light.webp" width="1800" height="1080"
+               alt="The Customers table of a sample database open in the datasheet, with the list of tables on the left.">
+        </picture>
+        <picture class="shot" data-shot="1">
+          <source srcset="screenshots/2_filter_dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="screenshots/2_filter_light.webp" width="1800" height="1080" loading="lazy"
+               alt="A column filter menu listing product categories, with Coffee beans and Tea selected.">
+        </picture>
+        <picture class="shot" data-shot="2">
+          <source srcset="screenshots/3_sql_dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="screenshots/3_sql_light.webp" width="1800" height="1080" loading="lazy"
+               alt="The SQL editor with a query joining three tables, and its results grouped by country.">
+        </picture>
+        <picture class="shot" data-shot="3">
+          <source srcset="screenshots/4_design_dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="screenshots/4_design_light.webp" width="1800" height="1080" loading="lazy"
+               alt="The design view of the Customers table: field names, data types, sizes, descriptions, and indexes.">
+        </picture>
+        <picture class="shot" data-shot="4">
+          <source srcset="screenshots/5_export_dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="screenshots/5_export_light.webp" width="1800" height="1080" loading="lazy"
+               alt="The Export multiple objects window with three tables selected and Excel workbook as the format.">
+        </picture>
       </div>
+    </div>
 
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="slides" tabindex="0" aria-label="Screenshots, scroll sideways or use the tabs above">
-          <figure class="slide" id="slide-0" role="tabpanel" aria-labelledby="tab-0">
-            <picture>
-              <source srcset="screenshots/1_datasheet_dark.webp" media="(prefers-color-scheme: dark)">
-              <img src="screenshots/1_datasheet_light.webp" width="1800" height="1080"
-                   alt="The Customers table of a sample database open in the datasheet, with the list of tables on the left.">
-            </picture>
-            <figcaption>Every table in a fast datasheet. Thousands of records scroll instantly, and nothing is written until you save.</figcaption>
-          </figure>
-          <figure class="slide" id="slide-1" role="tabpanel" aria-labelledby="tab-1">
-            <picture>
-              <source srcset="screenshots/2_filter_dark.webp" media="(prefers-color-scheme: dark)">
-              <img src="screenshots/2_filter_light.webp" width="1800" height="1080" loading="lazy"
-                   alt="A column filter menu listing product categories, with Coffee beans and Tea selected.">
-            </picture>
-            <figcaption>Filter by a list of values or by a condition that fits the field type: text, numbers, dates, yes/no.</figcaption>
-          </figure>
-          <figure class="slide" id="slide-2" role="tabpanel" aria-labelledby="tab-2">
-            <picture>
-              <source srcset="screenshots/3_sql_dark.webp" media="(prefers-color-scheme: dark)">
-              <img src="screenshots/3_sql_light.webp" width="1800" height="1080" loading="lazy"
-                   alt="The SQL editor with a query joining three tables, and its results grouped by country.">
-            </picture>
-            <figcaption>Run saved queries or write your own SQL, with highlighting, autocomplete, and results in milliseconds.</figcaption>
-          </figure>
-          <figure class="slide" id="slide-3" role="tabpanel" aria-labelledby="tab-3">
-            <picture>
-              <source srcset="screenshots/4_design_dark.webp" media="(prefers-color-scheme: dark)">
-              <img src="screenshots/4_design_light.webp" width="1800" height="1080" loading="lazy"
-                   alt="The design view of the Customers table: field names, data types, sizes, descriptions, and indexes.">
-            </picture>
-            <figcaption>See how each table is built, add fields, change their type, and create new tables with keys and indexes.</figcaption>
-          </figure>
-          <figure class="slide" id="slide-4" role="tabpanel" aria-labelledby="tab-4">
-            <picture>
-              <source srcset="screenshots/5_export_dark.webp" media="(prefers-color-scheme: dark)">
-              <img src="screenshots/5_export_light.webp" width="1800" height="1080" loading="lazy"
-                   alt="The Export multiple objects window with three tables selected and Excel workbook as the format.">
-            </picture>
-            <figcaption>Export tables and queries to Excel, CSV, JSON, Parquet, and more, or the whole database to SQLite.</figcaption>
-          </figure>
+    <div class="reading">
+      <h2 id="features-title" data-reveal>What you can do</h2>
+
+      <article class="block" data-show="0">
+        <picture class="inline-shot">
+          <source srcset="screenshots/1_datasheet_dark.webp" media="(prefers-color-scheme: dark)">
+          <img loading="lazy" src="screenshots/1_datasheet_light.webp" width="1800" height="1080"
+               alt="The Customers table of a sample database open in the datasheet, with the list of tables on the left.">
+        </picture>
+        <h3 data-reveal>Browse and edit every table.</h3>
+        <p data-reveal style="--i:1">Sort, search, freeze and hide columns. Edit records, attachments, and multi-value fields. Thousands of records scroll instantly, and changes stay in memory until you save, with an optional backup copy. Password-protected files open after you type the password, which is kept in memory only.</p>
+        <p class="show" data-reveal style="--i:2"><button type="button" data-go="0">Show the datasheet</button></p>
+      </article>
+
+      <article class="block" data-show="1">
+        <picture class="inline-shot">
+          <source srcset="screenshots/2_filter_dark.webp" media="(prefers-color-scheme: dark)">
+          <img loading="lazy" src="screenshots/2_filter_light.webp" width="1800" height="1080"
+               alt="A column filter menu listing product categories, with Coffee beans and Tea selected.">
+        </picture>
+        <h3 data-reveal>Filter by what a field holds.</h3>
+        <p data-reveal style="--i:1">Pick values from a list, or set a condition that fits the field type: text, numbers, dates, yes/no. Filters on several columns combine.</p>
+        <p class="show" data-reveal style="--i:2"><button type="button" data-go="1">Show a filter</button></p>
+      </article>
+
+      <article class="block" data-show="2">
+        <picture class="inline-shot">
+          <source srcset="screenshots/3_sql_dark.webp" media="(prefers-color-scheme: dark)">
+          <img loading="lazy" src="screenshots/3_sql_light.webp" width="1800" height="1080"
+               alt="The SQL editor with a query joining three tables, and its results grouped by country.">
+        </picture>
+        <h3 data-reveal>Run queries, read the VBA.</h3>
+        <p data-reveal style="--i:1">Saved select, crosstab, union, and action queries, parameters included, plus an SQL editor with highlighting and autocomplete. Every VBA module opens with syntax highlighting and the SQL built inside the code, and many procedures run directly on the Mac.</p>
+        <p class="show" data-reveal style="--i:2"><button type="button" data-go="2">Show the SQL editor</button></p>
+      </article>
+
+      <article class="block" data-show="3">
+        <picture class="inline-shot">
+          <source srcset="screenshots/4_design_dark.webp" media="(prefers-color-scheme: dark)">
+          <img loading="lazy" src="screenshots/4_design_light.webp" width="1800" height="1080"
+               alt="The design view of the Customers table: field names, data types, sizes, descriptions, and indexes.">
+        </picture>
+        <h3 data-reveal>Change how tables are built.</h3>
+        <p data-reveal style="--i:1">Create tables with keys and indexes. Add, rename, and delete fields, and change a data type after a check of what would be lost. See the relationship diagram, manage linked tables, print a report of every object, create blank databases, and compact old ones.</p>
+        <p class="show" data-reveal style="--i:2"><button type="button" data-go="3">Show the design view</button></p>
+      </article>
+
+      <article class="block" data-show="4">
+        <picture class="inline-shot">
+          <source srcset="screenshots/5_export_dark.webp" media="(prefers-color-scheme: dark)">
+          <img loading="lazy" src="screenshots/5_export_light.webp" width="1800" height="1080"
+               alt="The Export multiple objects window with three tables selected and Excel workbook as the format.">
+        </picture>
+        <h3 data-reveal>Take the data anywhere.</h3>
+        <p data-reveal style="--i:1">Import and export Excel, CSV, Parquet, JSON, XML, HTML, and SQL scripts. Move a whole database to SQLite, relationships and indexes included.</p>
+        <p class="show" data-reveal style="--i:2"><button type="button" data-go="4">Show the export window</button></p>
+      </article>
+
+      <article class="block" data-show="keep">
+        <h3 data-reveal>Feels like it belongs on a Mac.</h3>
+        <p data-reveal style="--i:1">Native menus and shortcuts, light and dark appearance, numbers and dates in your region’s format. In English, Italian, Spanish, French, German, Chinese, and Hindi.</p>
+        <div class="seg" role="radiogroup" aria-label="Screenshot appearance" data-reveal style="--i:2">
+          <button type="button" role="radio" aria-checked="false" data-theme-set="light">Light</button>
+          <button type="button" role="radio" aria-checked="false" data-theme-set="dark">Dark</button>
         </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4. File supportati: una scheda per estensione, una fascia per versione, e la prova sul proprio file -->
+  <section id="files" class="files" aria-labelledby="files-title">
+    <div class="grid files-head">
+      <h2 id="files-title" data-reveal><span class="soft">Every Access file</span><br>since 1997.</h2>
+      <div class="check" data-reveal style="--i:1">
+        <label class="button button-dark" for="file">Check your file</label>
+        <input id="file" class="visually-hidden" type="file" accept=".accdb,.mdb,.accde,.mde,.laccdb">
+        <p>Read on this page only. The file never leaves your computer.</p>
+      </div>
+    </div>
+
+    <p class="verdict grid" id="verdict" aria-live="polite" hidden></p>
+
+    <div class="grid agenda">
+      <div class="types" role="tablist" aria-label="File types" aria-orientation="vertical">
+        <button role="tab" id="t-accdb" aria-controls="p-accdb" aria-selected="true"><b>.accdb</b><span>2007 and later</span></button>
+        <button role="tab" id="t-mdb" aria-controls="p-mdb" aria-selected="false" tabindex="-1"><b>.mdb</b><span>1997 to 2003</span></button>
+        <button role="tab" id="t-accde" aria-controls="p-accde" aria-selected="false" tabindex="-1"><b>.accde</b><span>Compiled, 2007+</span></button>
+        <button role="tab" id="t-mde" aria-controls="p-mde" aria-selected="false" tabindex="-1"><b>.mde</b><span>Compiled, 97–2003</span></button>
       </div>
 
-      <div class="slide-nav">
-        <button class="arrow" data-step="-1" aria-label="Previous screenshot">‹</button>
-        <span class="counter" aria-live="polite"><span id="slide-num">1</span> of 5</span>
-        <button class="arrow" data-step="1" aria-label="Next screenshot">›</button>
+      <div class="bands">
+        <ul role="tabpanel" id="p-accdb" aria-labelledby="t-accdb">
+          <li data-ver="2"><span class="yr">2007</span><span class="what">Access 2007<small>ACE 12 database engine</small></span><span class="ok">Supported</span></li>
+          <li data-ver="3"><span class="yr">2010</span><span class="what">Access 2010<small>ACE 14 database engine</small></span><span class="ok">Supported</span></li>
+          <li data-ver="4"><span class="yr">2013</span><span class="what">Access 2013<small>ACE 15 database engine</small></span><span class="ok">Supported</span></li>
+          <li data-ver="5"><span class="yr">2016</span><span class="what">Access 2016, 2019, 2021, and 365<small>ACE 16 database engine</small></span><span class="ok">Supported</span></li>
+        </ul>
+        <ul role="tabpanel" id="p-mdb" aria-labelledby="t-mdb" hidden>
+          <li data-ver="0"><span class="yr">1997</span><span class="what">Access 97<small>Jet 3 database engine</small></span><span class="ok">Supported</span></li>
+          <li data-ver="1"><span class="yr">2000</span><span class="what">Access 2000<small>Jet 4 database engine</small></span><span class="ok">Supported</span></li>
+          <li data-ver="1"><span class="yr">2002</span><span class="what">Access 2002 and 2003<small>Jet 4 database engine</small></span><span class="ok">Supported</span></li>
+        </ul>
+        <ul role="tabpanel" id="p-accde" aria-labelledby="t-accde" hidden>
+          <li><span class="yr">2007</span><span class="what">Access 2007 to 365<small>Compiled by Access: the VBA source is removed</small></span><span class="ok">Supported</span></li>
+          <li><span class="yr">Data</span><span class="what">Tables and queries<small>Browse, filter, edit, and export as usual</small></span><span class="ok">Supported</span></li>
+        </ul>
+        <ul role="tabpanel" id="p-mde" aria-labelledby="t-mde" hidden>
+          <li><span class="yr">1997</span><span class="what">Access 97 to 2003<small>Compiled by Access: the VBA source is removed</small></span><span class="ok">Supported</span></li>
+          <li><span class="yr">Data</span><span class="what">Tables and queries<small>Browse, filter, edit, and export as usual</small></span><span class="ok">Supported</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section id="features" class="wrap features">
-    <h2>What you can do</h2>
-    <dl class="sheet">
-      <div><dt>Browse and edit data</dt>
-        <dd>Sort, filter, search, freeze and hide columns. Edit records, attachments, and multi-value fields. Changes stay in memory until you save, with an optional backup copy.</dd></div>
-      <div><dt>Run queries</dt>
-        <dd>Saved select, crosstab, union, and action queries, parameters included, plus an SQL editor for your own.</dd></div>
-      <div><dt>Change the structure</dt>
-        <dd>Create tables with keys and indexes. Add, rename, and delete fields, and change data types after a check of what would be lost.</dd></div>
-      <div><dt>Read and run VBA</dt>
-        <dd>Every module with syntax highlighting and the SQL built inside the code. Many procedures run directly on the Mac.</dd></div>
-      <div><dt>Import and export</dt>
-        <dd>Excel, CSV, Parquet, JSON, XML, HTML, and SQL scripts. Whole databases to SQLite, with relationships and indexes.</dd></div>
-      <div><dt>Open protected files</dt>
-        <dd>Password-protected databases open after you type the password, which stays in memory only.</dd></div>
-      <div><dt>Understand a database</dt>
-        <dd>A relationship diagram, linked-table management, and a printable report of every object.</dd></div>
-      <div><dt>Keep files tidy</dt>
-        <dd>Create blank databases and compact existing ones to reclaim unused space.</dd></div>
-      <div><dt>Feel at home on macOS</dt>
-        <dd>Native menus and shortcuts, light and dark appearance, numbers and dates in your region’s format. In English, Italian, Spanish, French, German, Chinese, and Hindi.</dd></div>
-    </dl>
-  </section>
-
-  <section id="files" class="wrap files">
-    <h2>Supported files</h2>
-    <p><code>.accdb</code>, <code>.mdb</code>, <code>.accde</code>, and <code>.mde</code> files from every version of Access since 1997.</p>
-    <ol class="versions" aria-label="Access versions">
-      <li>97</li><li>2000</li><li>2003</li><li>2007</li><li>2010</li><li>2013</li><li>2016</li><li>2019</li><li>365</li>
-    </ol>
-  </section>
-
-  <section id="support" class="wrap support">
-    <h2>Support</h2>
+  <!-- 5. Assistenza: domande e risposte, tutte visibili -->
+  <section id="support" class="support grid" aria-labelledby="support-title">
+    <h2 id="support-title" data-reveal>Support</h2>
     <div class="faq">
-      <details>
-        <summary>Do I need Microsoft Access or Windows?</summary>
-        <p>No. ACCDB Studio reads and writes the database file format directly.</p>
-      </details>
-      <details>
-        <summary>Will my database files be changed?</summary>
+      <div class="qa" data-reveal style="--i:0">
+        <h3>Do I need Microsoft Access or Windows?</h3>
+        <p>No. ACCDB Studio reads and writes the database file format directly, on the Mac.</p>
+      </div>
+      <div class="qa" data-reveal style="--i:1">
+        <h3>Will my database files be changed?</h3>
         <p>Only when you save. Until then every change stays in memory and can be discarded. You can also turn on a backup copy in Settings, made before the first save of each file.</p>
-      </details>
-      <details>
-        <summary>Are password-protected databases supported?</summary>
+      </div>
+      <div class="qa" data-reveal style="--i:2">
+        <h3>Are password-protected databases supported?</h3>
         <p>Yes. When you open a protected file, ACCDB Studio asks for its password and keeps it in memory only for that session. Setting or removing a password isn’t available yet.</p>
-      </details>
-      <details>
-        <summary>Can I use forms and reports?</summary>
+      </div>
+      <div class="qa" data-reveal style="--i:3">
+        <h3>Can I use forms and reports?</h3>
         <p>Forms, reports, and macros are listed and their VBA code can be read, but their layout isn’t displayed yet. VBA procedures that rely on forms, Windows APIs, or COM automation can’t run on a Mac.</p>
-      </details>
-      <details>
-        <summary>Is my data sent anywhere?</summary>
+      </div>
+      <div class="qa" data-reveal style="--i:3">
+        <h3>Is my data sent anywhere?</h3>
         <p>No. The app doesn’t connect to the internet and contains no analytics. See the <a href="privacy.html">privacy policy</a>.</p>
-      </details>
-      <details>
-        <summary>How do I report a problem?</summary>
-        <p>Write to the address below with your macOS version, the app version (ACCDB Studio → About), and the steps that lead to the problem. If it concerns a specific file, a small sample that shows the issue helps a lot. Please don’t send confidential data.</p>
-      </details>
+      </div>
+      <div class="qa" data-reveal style="--i:3">
+        <h3>How do I report a problem?</h3>
+        <p>Write to the address below with the details listed there. If it concerns a specific file, a small sample that shows the issue helps a lot.</p>
+      </div>
     </div>
+  </section>
 
-    <p class="contact">Questions or problems? Write to <a href="mailto:info@alessandroarrigo.com">info@alessandroarrigo.com</a></p>
+  <!-- 6. Contatti: un indirizzo e cosa scrivere -->
+  <section class="contact grid" aria-label="Contact">
+    <p class="contact-lead" data-reveal>Questions or problems? Write to <a href="mailto:info@alessandroarrigo.com">info@alessandroarrigo.com</a></p>
+    <div class="contact-note" data-reveal style="--i:1">
+      <p>To report a problem, include your macOS version, the app version (ACCDB Studio → About), the steps that lead there, and a small sample file if it helps. Please don’t send confidential data.</p>
+      <a class="button" href="mailto:info@alessandroarrigo.com?subject=ACCDB%20Studio%20support&amp;body=macOS%20version%3A%20%0AApp%20version%20(ACCDB%20Studio%20%E2%86%92%20About)%3A%20%0ASteps%3A%20%0A1.%20%0A2.%20%0A">Write an email</a>
+    </div>
   </section>
 </main>
 
-<footer class="wrap">
-  <p>© 2026 Alessandro Arrigo · <a href="privacy.html">Privacy Policy</a></p>
-  <p class="fine">Microsoft, Access, and Excel are trademarks of the Microsoft group of companies. ACCDB Studio is an independent product and is not affiliated with, sponsored by, or endorsed by Microsoft Corporation. Screenshots show a sample database with made-up data.</p>
+<!-- 7. Chiusura: nome, link, note legali -->
+<footer class="foot grid">
+  <div class="foot-brand">
+    <a class="foot-name" href="#top"><img src="icon.png" alt="" width="28" height="28"><span>ACCDB Studio</span></a>
+    <p>An independent Mac app by Alessandro Arrigo.</p>
+  </div>
+  <nav class="foot-nav" aria-label="Footer">
+    <a href="#features">Features</a>
+    <a href="#files">Supported files</a>
+    <a href="#support">Support</a>
+    <a href="privacy.html">Privacy policy</a>
+  </nav>
+  <div class="foot-meta">
+    <a href="mailto:info@alessandroarrigo.com">info@alessandroarrigo.com</a>
+    <p>English, Italiano, Español, Français, Deutsch, 中文, हिन्दी</p>
+  </div>
+  <p class="fine">© 2026 Alessandro Arrigo. Microsoft, Access, and Excel are trademarks of the Microsoft group of companies. ACCDB Studio is an independent product and is not affiliated with, sponsored by, or endorsed by Microsoft Corporation. Screenshots show a sample database with made-up data.</p>
 </footer>
 
-<script src="carousel.js" defer></script>
+<script src="main.js" defer></script>
 </body>
 </html>
