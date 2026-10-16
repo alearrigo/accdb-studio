@@ -5,58 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ACCDB Studio — Access databases on your Mac</title>
   <meta name="description" content="ACCDB Studio opens, explores, and edits .accdb and .mdb database files natively on macOS, without Windows or Microsoft Access.">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="ACCDB Studio — Access databases on your Mac">
+  <meta property="og:description" content="Open, explore, and edit .accdb and .mdb files natively on macOS. No Windows, no Access, no drivers.">
+  <meta property="og:image" content="https://alearrigo.github.io/accdb-studio/screenshots/1_datasheet_light.webp">
   <link rel="icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="hero">
-  <img src="icon.png" alt="ACCDB Studio icon">
-  <h1>ACCDB Studio</h1>
-  <p>Open, explore, and edit <b>.accdb</b> and <b>.mdb</b> databases natively on your Mac.
-     No Windows, no Microsoft Access, no drivers.</p>
-  <span class="badge">Coming soon to the Mac App Store</span>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="./"><img src="icon.png" alt="" width="32" height="32"><span>ACCDB Studio</span></a>
+    <nav aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#files">Supported files</a>
+      <a href="#support">Support</a>
+    </nav>
+  </div>
 </header>
 
-<main>
-  <h2>Features</h2>
-  <div class="grid">
-    <div class="card"><h3>Tables and data</h3><p>A fast datasheet for hundreds of thousands of records, with sorting, filters by field type, search, frozen and hidden columns.</p></div>
-    <div class="card"><h3>Editing</h3><p>Edit records, add and delete them, design new tables and change existing ones. Nothing is written until you save, with an optional backup copy.</p></div>
-    <div class="card"><h3>Queries</h3><p>Run saved select, crosstab, union, and action queries, or write your own SQL in an editor with syntax highlighting and autocomplete.</p></div>
-    <div class="card"><h3>VBA code</h3><p>Read every module with syntax highlighting, see the SQL built inside the code, and run many procedures directly on the Mac.</p></div>
-    <div class="card"><h3>Import and export</h3><p>Excel, CSV, Parquet, JSON, XML, HTML, SQL scripts, and whole-database export to SQLite, with relationships and indexes.</p></div>
-    <div class="card"><h3>Relationships and documentation</h3><p>An interactive relationship diagram, linked-table management, and a printable report of the whole database.</p></div>
-    <div class="card"><h3>New and compact databases</h3><p>Create blank databases and compact existing ones to reclaim unused space.</p></div>
-    <div class="card"><h3>Made for macOS</h3><p>Native menus and shortcuts, light and dark appearance, Apple silicon and Intel. Available in English, Italian, Spanish, French, German, Chinese, and Hindi.</p></div>
-  </div>
+<main id="main">
+  <section class="hero wrap">
+    <div class="hero-text">
+      <h1>Access databases, opened on your&nbsp;Mac.</h1>
+      <p class="lede">Open, explore, and edit <code>.accdb</code> and <code>.mdb</code> files natively on macOS.
+        No Windows, no Microsoft Access, no drivers.</p>
+      <p class="store"><span class="store-badge">Coming soon to the Mac App Store</span>
+        <span class="req">macOS 11 or later, Apple silicon and Intel</span></p>
+    </div>
+    <img class="hero-icon" src="icon.png" alt="ACCDB Studio app icon" width="168" height="168">
+  </section>
 
-  <h2>Supported files</h2>
-  <p>Databases created with Access 97 through Access 2019 / Microsoft 365: <b>.accdb</b>, <b>.mdb</b>, <b>.accde</b>, and <b>.mde</b>.
-     Requires macOS 11 Big Sur or later.</p>
+  <section class="showcase" aria-labelledby="tour-title">
+    <div class="wrap">
+      <h2 id="tour-title" class="visually-hidden">A look at the app</h2>
+      <div class="tabs" role="tablist" aria-label="Screenshots">
+        <button role="tab" id="tab-0" aria-controls="slide-0" aria-selected="true">Datasheet</button>
+        <button role="tab" id="tab-1" aria-controls="slide-1" aria-selected="false" tabindex="-1">Filters</button>
+        <button role="tab" id="tab-2" aria-controls="slide-2" aria-selected="false" tabindex="-1">SQL queries</button>
+        <button role="tab" id="tab-3" aria-controls="slide-3" aria-selected="false" tabindex="-1">Table design</button>
+        <button role="tab" id="tab-4" aria-controls="slide-4" aria-selected="false" tabindex="-1">Export</button>
+      </div>
 
-  <h2 id="support">Support</h2>
-  <dl>
-    <dt>Do I need Microsoft Access or Windows?</dt>
-    <dd>No. ACCDB Studio reads and writes the database file format directly.</dd>
-    <dt>Will my database files be changed?</dt>
-    <dd>Only when you save. Until then every change stays in memory and can be discarded. You can also turn on a backup copy in Settings, made before the first save of each file.</dd>
-    <dt>Are password-protected databases supported?</dt>
-    <dd>Not yet. Support for encrypted databases is planned.</dd>
-    <dt>Can I use forms and reports?</dt>
-    <dd>Forms, reports, and macros are listed and their VBA code can be read, but their layout is not displayed yet. VBA procedures that rely on forms, Windows APIs, or COM automation cannot run on a Mac.</dd>
-    <dt>How do I report a problem?</dt>
-    <dd>Write to the address below with your macOS version, the app version (ACCDB Studio → About), and the steps that lead to the problem. If it concerns a specific file, a small sample that shows the issue helps a lot. Please don't send confidential data.</dd>
-  </dl>
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="slides" tabindex="0" aria-label="Screenshots, scroll sideways or use the tabs above">
+          <figure class="slide" id="slide-0" role="tabpanel" aria-labelledby="tab-0">
+            <picture>
+              <source srcset="screenshots/1_datasheet_dark.webp" media="(prefers-color-scheme: dark)">
+              <img src="screenshots/1_datasheet_light.webp" width="1800" height="1080"
+                   alt="The Customers table of a sample database open in the datasheet, with the list of tables on the left.">
+            </picture>
+            <figcaption>Every table in a fast datasheet. Thousands of records scroll instantly, and nothing is written until you save.</figcaption>
+          </figure>
+          <figure class="slide" id="slide-1" role="tabpanel" aria-labelledby="tab-1">
+            <picture>
+              <source srcset="screenshots/2_filter_dark.webp" media="(prefers-color-scheme: dark)">
+              <img src="screenshots/2_filter_light.webp" width="1800" height="1080" loading="lazy"
+                   alt="A column filter menu listing product categories, with Coffee beans and Tea selected.">
+            </picture>
+            <figcaption>Filter by a list of values or by a condition that fits the field type: text, numbers, dates, yes/no.</figcaption>
+          </figure>
+          <figure class="slide" id="slide-2" role="tabpanel" aria-labelledby="tab-2">
+            <picture>
+              <source srcset="screenshots/3_sql_dark.webp" media="(prefers-color-scheme: dark)">
+              <img src="screenshots/3_sql_light.webp" width="1800" height="1080" loading="lazy"
+                   alt="The SQL editor with a query joining three tables, and its results grouped by country.">
+            </picture>
+            <figcaption>Run saved queries or write your own SQL, with highlighting, autocomplete, and results in milliseconds.</figcaption>
+          </figure>
+          <figure class="slide" id="slide-3" role="tabpanel" aria-labelledby="tab-3">
+            <picture>
+              <source srcset="screenshots/4_design_dark.webp" media="(prefers-color-scheme: dark)">
+              <img src="screenshots/4_design_light.webp" width="1800" height="1080" loading="lazy"
+                   alt="The design view of the Customers table: field names, data types, sizes, descriptions, and indexes.">
+            </picture>
+            <figcaption>See how each table is built, add fields, change their type, and create new tables with keys and indexes.</figcaption>
+          </figure>
+          <figure class="slide" id="slide-4" role="tabpanel" aria-labelledby="tab-4">
+            <picture>
+              <source srcset="screenshots/5_export_dark.webp" media="(prefers-color-scheme: dark)">
+              <img src="screenshots/5_export_light.webp" width="1800" height="1080" loading="lazy"
+                   alt="The Export multiple objects window with three tables selected and Excel workbook as the format.">
+            </picture>
+            <figcaption>Export tables and queries to Excel, CSV, JSON, Parquet, and more, or the whole database to SQLite.</figcaption>
+          </figure>
+        </div>
+      </div>
 
-  <div class="contact">
-    <p><b>Contact</b></p>
-    <p><a href="mailto:info@alessandroarrigo.com">info@alessandroarrigo.com</a></p>
-  </div>
+      <div class="slide-nav">
+        <button class="arrow" data-step="-1" aria-label="Previous screenshot">‹</button>
+        <span class="counter" aria-live="polite"><span id="slide-num">1</span> of 5</span>
+        <button class="arrow" data-step="1" aria-label="Next screenshot">›</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="wrap features">
+    <h2>What you can do</h2>
+    <dl class="sheet">
+      <div><dt>Browse and edit data</dt>
+        <dd>Sort, filter, search, freeze and hide columns. Edit records, attachments, and multi-value fields. Changes stay in memory until you save, with an optional backup copy.</dd></div>
+      <div><dt>Run queries</dt>
+        <dd>Saved select, crosstab, union, and action queries, parameters included, plus an SQL editor for your own.</dd></div>
+      <div><dt>Change the structure</dt>
+        <dd>Create tables with keys and indexes. Add, rename, and delete fields, and change data types after a check of what would be lost.</dd></div>
+      <div><dt>Read and run VBA</dt>
+        <dd>Every module with syntax highlighting and the SQL built inside the code. Many procedures run directly on the Mac.</dd></div>
+      <div><dt>Import and export</dt>
+        <dd>Excel, CSV, Parquet, JSON, XML, HTML, and SQL scripts. Whole databases to SQLite, with relationships and indexes.</dd></div>
+      <div><dt>Open protected files</dt>
+        <dd>Password-protected databases open after you type the password, which stays in memory only.</dd></div>
+      <div><dt>Understand a database</dt>
+        <dd>A relationship diagram, linked-table management, and a printable report of every object.</dd></div>
+      <div><dt>Keep files tidy</dt>
+        <dd>Create blank databases and compact existing ones to reclaim unused space.</dd></div>
+      <div><dt>Feel at home on macOS</dt>
+        <dd>Native menus and shortcuts, light and dark appearance, numbers and dates in your region’s format. In English, Italian, Spanish, French, German, Chinese, and Hindi.</dd></div>
+    </dl>
+  </section>
+
+  <section id="files" class="wrap files">
+    <h2>Supported files</h2>
+    <p><code>.accdb</code>, <code>.mdb</code>, <code>.accde</code>, and <code>.mde</code> files from every version of Access since 1997.</p>
+    <ol class="versions" aria-label="Access versions">
+      <li>97</li><li>2000</li><li>2003</li><li>2007</li><li>2010</li><li>2013</li><li>2016</li><li>2019</li><li>365</li>
+    </ol>
+  </section>
+
+  <section id="support" class="wrap support">
+    <h2>Support</h2>
+    <div class="faq">
+      <details>
+        <summary>Do I need Microsoft Access or Windows?</summary>
+        <p>No. ACCDB Studio reads and writes the database file format directly.</p>
+      </details>
+      <details>
+        <summary>Will my database files be changed?</summary>
+        <p>Only when you save. Until then every change stays in memory and can be discarded. You can also turn on a backup copy in Settings, made before the first save of each file.</p>
+      </details>
+      <details>
+        <summary>Are password-protected databases supported?</summary>
+        <p>Yes. When you open a protected file, ACCDB Studio asks for its password and keeps it in memory only for that session. Setting or removing a password isn’t available yet.</p>
+      </details>
+      <details>
+        <summary>Can I use forms and reports?</summary>
+        <p>Forms, reports, and macros are listed and their VBA code can be read, but their layout isn’t displayed yet. VBA procedures that rely on forms, Windows APIs, or COM automation can’t run on a Mac.</p>
+      </details>
+      <details>
+        <summary>Is my data sent anywhere?</summary>
+        <p>No. The app doesn’t connect to the internet and contains no analytics. See the <a href="privacy.html">privacy policy</a>.</p>
+      </details>
+      <details>
+        <summary>How do I report a problem?</summary>
+        <p>Write to the address below with your macOS version, the app version (ACCDB Studio → About), and the steps that lead to the problem. If it concerns a specific file, a small sample that shows the issue helps a lot. Please don’t send confidential data.</p>
+      </details>
+    </div>
+
+    <p class="contact">Questions or problems? Write to <a href="mailto:info@alessandroarrigo.com">info@alessandroarrigo.com</a></p>
+  </section>
 </main>
 
-<footer>
+<footer class="wrap">
   <p>© 2026 Alessandro Arrigo · <a href="privacy.html">Privacy Policy</a></p>
-  <p>Microsoft, Access, and Excel are trademarks of the Microsoft group of companies. ACCDB Studio is an independent product and is not affiliated with, sponsored by, or endorsed by Microsoft Corporation.</p>
+  <p class="fine">Microsoft, Access, and Excel are trademarks of the Microsoft group of companies. ACCDB Studio is an independent product and is not affiliated with, sponsored by, or endorsed by Microsoft Corporation. Screenshots show a sample database with made-up data.</p>
 </footer>
+
+<script src="carousel.js" defer></script>
 </body>
 </html>
