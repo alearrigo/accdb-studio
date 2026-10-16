@@ -132,7 +132,10 @@
 
   // ---------- controllo del file: legge solo l'intestazione, qui nel browser ----------
   // Byte 4: "Standard Jet DB" o "Standard ACE DB". Byte 0x14: versione del formato.
-  const formats = ['Jet 3, the Access 97 format', 'Jet 4, the Access 2000–2003 format', 'ACE 12, the Access 2007 format', 'ACE 14, the Access 2010 format'];
+  // Stessa tabella di JetVersion::from_header nel motore dell'app.
+  const formats = ['Jet 3, the Access 97 format', 'Jet 4, the Access 2000–2003 format', 'ACE 12, the Access 2007 format',
+    'ACE 14, the Access 2010 format', 'ACE 15, the Access 2013 format', 'ACE 16, the Access 2016 format',
+    'ACE 17, the Access 2019, 2021, and 365 format'];
   const file = document.getElementById('file');
   const verdict = document.getElementById('verdict');
   const say = (html) => { verdict.innerHTML = html; verdict.hidden = false; };
@@ -149,12 +152,12 @@
       return;
     }
     const v = bytes[0x14];
-    const what = formats[v] ?? 'ACE 15 or later, the format of Access 2013 and newer';
-    say(`<b>${name}</b> is an Access database in ${what}. ACCDB Studio opens it.`);
+    const what = formats[v] ?? 'an ACE format newer than Access 365';
+    say(`<b>${name}</b> is an Access database in ${what}. ACCDB Studio opens it${v === 0 ? ' read only' : ''}.`);
     const ext = (f.name.split('.').pop() || '').toLowerCase();
     const tab = tabs.findIndex((t) => t.id === `t-${ext}`);
     pick(tab >= 0 ? tab : (v <= 1 ? 1 : 0));
-    if (v <= 3) document.querySelector(`.bands ul:not([hidden]) li[data-ver="${v}"]`)?.classList.add('is-match');
+    if (v <= 6) document.querySelector(`.bands ul:not([hidden]) li[data-ver="${v}"]`)?.classList.add('is-match');
     file.value = '';
   });
 })();
